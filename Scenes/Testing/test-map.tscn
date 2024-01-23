@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Testing/test-player.tscn" type="PackedScene" id=1]
+
+[node name="Test map" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+width = 20.115
+height = 0.480863
+depth = 26.92
+
+[node name="test-player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02786, 0 )
