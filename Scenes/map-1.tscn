@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Testing/test-player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 0 )
+
+[node name="map-1intro" type="Spatial"]
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.015686, 0 )
+use_collision = true
+width = 100.0
+height = 0.001
+depth = 100.0
+material = SubResource( 1 )
+
+[node name="ground2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.8937, 14.5278, 0 )
+use_collision = true
+width = 18.5705
+height = 0.001
+depth = 17.5041
+
+[node name="wall" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6387, 7.2484, 0.0579401 )
+use_collision = true
+width = 0.121597
+height = 14.8555
+depth = 17.6824
+
+[node name="wall2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 28.44, 7.2484, 8.86786 )
+use_collision = true
+width = 0.121597
+height = 14.8555
+depth = 17.6824
+
+[node name="wall4" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 28.44, 7.2484, -8.79901 )
+use_collision = true
+width = 0.121597
+height = 14.8555
+depth = 17.6824
+
+[node name="wall3" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 37.2084, 7.21462, 0.174195 )
+use_collision = true
+width = 0.121597
+height = 14.8555
+depth = 17.6824
+
+[node name="door" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5856, 2.17761, 0 )
+operation = 2
+width = 0.293642
+height = 4.36921
+depth = 5.05879
+
+[node name="test-player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.03255, 0 )
+camera_path = NodePath("../../map-1intro/test-player/eyes/Camera")

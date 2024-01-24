@@ -1,24 +1,48 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/test-player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ak47/AK47.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/moosic/Chopin_-_Prelude_in_E_Minor_Op._28_No._4.wav" type="AudioStream" id=4]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleMesh" id=1]
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="CapsuleShape" id=2]
 
 [node name="test-player" type="KinematicBody"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 script = ExtResource( 1 )
+SPEED = 7
+SPRINT_SPEED = 9
+ACCEL = 40.0
+JUMP_SPEED = 12
 camera_path = NodePath("eyes/Camera")
 
 [node name="eyes" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="eyes"]
+transform = Transform( -2, 0, -6.51682e-07, 0, 2, 0, 6.51682e-07, 0, -2, 0.017875, 0.736447, 0.687638 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-shape = SubResource( 1 )
+[node name="AK47" parent="eyes/Camera" instance=ExtResource( 2 )]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0.144798, -0.351343, 0.687638 )
+
+[node name="AimRay" type="RayCast" parent="eyes/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317951, -0.223354, -0.191544 )
+cast_to = Vector3( 0, 0, -100 )
+collision_mask = 2
+collide_with_areas = true
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 1 )
 material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true

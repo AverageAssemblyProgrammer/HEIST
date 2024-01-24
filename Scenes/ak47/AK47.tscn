@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/gun-models/akms_polish_circle_11_from_radom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/muzzle_flashs/m_1.png" type="Texture" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="PlaneMesh" id=4]
+flip_faces = true
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "reset"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AK/MuzzleFlash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shoot"
+length = 0.07
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("AK:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.03, 0.06, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.168417, 0, 1.509 ), Vector3( -0.168417, 0, 1.509 ), Vector3( -0.168, 0, 1.59 ), Vector3( -0.168, 0, 1.57 ), Vector3( -0.168417, 0, 1.509 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AK:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01, 0.03, 0.06, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 180, 0 ), Vector3( 3, 180, 0 ), Vector3( -1, 180, 0 ), Vector3( 0, 180, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AK/MuzzleFlash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.043, 3, 0.064 ), Vector3( 0, 0, 0 ), Vector3( 0.043, 3, 0.064 ), Vector3( 0, 0, 0 ), Vector3( 0.043, 3, 0.064 ), Vector3( 0.042, 3, 0.064 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AK/MuzzleFlash:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0.01, 0.02, 0.03, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.000645563, 0.0795407, -0.642107 ), Vector3( -0.000822783, 0.0791717, -0.648585 ), Vector3( -0.001, 1, -0.653 ), Vector3( -0.001, 0.0825366, -0.655402 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AK/MuzzleFlash:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.02, 0.03, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 90, 90, 0 ), Vector3( 90, 90, 0 ), Vector3( 90, 90, 0 ), Vector3( 90, 90, 0 ) ]
+}
+
+[node name="AK47" type="Spatial"]
+
+[node name="hand-right" type="Spatial" parent="."]
+transform = Transform( 0.0675378, 0, 0.0492344, 0, 0.045, 0, -0.00791475, 0, 0.420125, -0.278, 0, 1.193 )
+
+[node name="MeshInstance" type="MeshInstance" parent="hand-right"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="hand-left" type="Spatial" parent="."]
+transform = Transform( 0.0629619, 0, -0.159786, 0, 0.045, 0, 0.0256866, 0, 0.39166, 0.082, 0, 1.193 )
+
+[node name="MeshInstance" type="MeshInstance" parent="hand-left"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="AK" type="Spatial" parent="."]
+transform = Transform( -1, -9.47701e-09, -3.25704e-07, 0, 0.999577, -0.0290847, 3.25841e-07, -0.0290847, -0.999577, -0.168, 0, 1.58333 )
+
+[node name="akms_polish_circle_11_from_radom" parent="AK" instance=ExtResource( 1 )]
+
+[node name="MuzzleFlash" type="MeshInstance" parent="AK"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.001, 0.0825366, -0.655402 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/reset = SubResource( 6 )
+anims/shoot = SubResource( 3 )

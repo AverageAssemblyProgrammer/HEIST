@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/gun-models/akms_polish_circle_11_from_radom.glb" type="PackedScene" id=1]
+
+[node name="akms_polish_circle_11_from_radom" instance=ExtResource( 1 )]
